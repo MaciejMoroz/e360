@@ -1,0 +1,49 @@
+// COLORS
+$color-1: #fff;
+$color-2: #000;
+$color-3: #2d2d2d;
+$color-4: #f42267;
+$color-5: #e50d54;
+$color-6: #3b55e6;
+$color-7: #243fd9;
+
+//
+
+$white: #fff;
+$black: #000;
+$color-error: red;
+$color-ok: green;
+
+// FONTS
+$base-unit: 18px;
+
+$font-1: "Montserrat", sans-serif;
+$font-2: "Mada", sans-serif;
+
+$font-size-base: $base-unit; //18 px
+$fw-light: 300;
+$fw-normal: 500;
+$fw-bold: 800;
+
+// FONT SIZE
+$font-size-body: $font-size-base; // 18
+$font-size-body2: $font-size-base * 0.75; // 13,5
+$font-size-h1: $font-size-base * 3; //54
+$font-size-h2: $font-size-base * 2.43; //43
+$font-size-h3: $font-size-base * 1.937; //35
+$font-size-h4: $font-size-base * 1.56; // 28
+$font-size-h5: $font-size-base * 1.25; // 22.5
+$font-size-h6: $font-size-base * 1; //18
+$fontsize-label: $font-size-base * 0.875; // 14
+
+// SPACE
+$space: 2 * $base-unit; // 36px
+
+// BREAK POINTS
+$bpoint-mob: 360px;
+$bpoint-tab: 768px;
+$bpoint-desk: 1024px;
+$bpoint-desklg: 1600px;
+
+$cont-max-width: $base-unit * 88.88; // 1600px
+$cont-min-width: $base-unit * 20; // 360px

@@ -1,0 +1,54 @@
+@import "../../GlobalStyles/variables.module";
+
+.itemBox {
+  display: flex;
+}
+
+.productItem {
+  position: relative;
+  flex-direction: column;
+  margin: $base-unit * 0.5;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  width: 340px;
+  @media (min-width: $bpoint-tab) {
+    padding: $base-unit;
+    width: 400px;
+  }
+
+  transition: 800ms ease all;
+  transform: scale(1);
+  box-shadow: 0 0 $base-unit rgba(0, 0, 0, 0.25);
+  ul {
+    margin-bottom: 70px;
+  }
+  &:hover {
+    transition: 800ms ease all;
+    box-shadow: 0 0 $space $color-3;
+    transform: scale(1.03);
+  }
+}
+.money {
+  margin: 0;
+}
+.change {
+  padding-left: 5px;
+  font-size: $font-size-h4;
+  vertical-align: text-top;
+  text-decoration: underline;
+}
+
+.currencySymbol {
+  font-size: $font-size-h2;
+}
+
+.priceDesc {
+  margin: 0 0 $base-unit;
+}
+
+.btn {
+  position: absolute;
+  bottom: $base-unit;
+  left: 26%;
+}

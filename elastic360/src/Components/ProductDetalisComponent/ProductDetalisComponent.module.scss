@@ -1,0 +1,8 @@
+@import "../../GlobalStyles/variables.module";
+
+.item {
+  &::before {
+    content: url("../../img/checked.png");
+    margin-right: $base-unit;
+  }
+}

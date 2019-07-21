@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/elastic360", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+mongoose.connect('mongodb+srv://user:user@cluster0-jqpri.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, dbName: "elastic360" });
 // models
 
 //// product

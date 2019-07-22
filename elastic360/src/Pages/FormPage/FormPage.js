@@ -1,17 +1,19 @@
 import React from 'react';
-import RegistrationForm from "../../Components/FormComponent/FormComponent"
+import FormContainer from "../../Redux/Containers/FormContainer"
 import Styles from "./FormPage.module.scss"
 
 
-const RegistrationPage = (props) => {
-    // console.log(props.location.state.product)
+const FormPage = (props) => {
+
+
+
     return (
         <section className="component">
             <div className="wrapper">
 
                 <p>RegistrationPage</p>
                 <div className={Styles.formBox}>
-                    <RegistrationForm ></RegistrationForm>
+                    <FormContainer history={props.history} props={props}></FormContainer>
                 </div>
 
 
@@ -21,4 +23,4 @@ const RegistrationPage = (props) => {
     );
 }
 
-export default RegistrationPage;
+export default FormPage;

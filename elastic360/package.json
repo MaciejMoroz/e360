@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "final-form": "^4.18.2",
+    "format-string-by-pattern": "^1.1.1",
+    "formik": "^1.5.8",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-final-form": "^6.3.0",
+    "react-payment-card-component": "^0.2.1",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",

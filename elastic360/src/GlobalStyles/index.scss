@@ -102,6 +102,16 @@ button {
   background: none;
   padding: 0;
 }
+button:disabled,
+button[disabled] {
+  opacity: 0.65;
+  background-color: $color-3;
+  cursor: not-allowed;
+  &:hover {
+    transform: scale(0.9);
+    background-color: $color-3;
+  }
+}
 
 .wrapper {
   padding-left: $base-unit;

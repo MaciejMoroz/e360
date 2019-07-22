@@ -8,7 +8,7 @@ app.use(cors())
 const {
 
   Product,
-  PersonModel
+  cartModel
 
 } = utilities;
 
@@ -27,6 +27,27 @@ router.get("/products/:productId?", async (req, res) => {
     res.send(await Product.find());
   }
 });
+
+router.put("/cart/:productId/:firstName?/:lastName?/:email?/:telNumber?", async (req, res) => {
+  let { productId, firstName, lasName, email, telNumber } = req.params;
+
+  const cart = new cartModel({
+    productId: productId,
+    user: {
+      firstName: firstName,
+      lastName: lasName,
+      email: email,
+      telNumber: telNumber
+    }
+  });
+  await cart.save();
+  res.send("dodano")
+
+})
+
+// router.delete("/cart/clear", async (req, res =>{
+
+// }))
 
 app.use(router);
 

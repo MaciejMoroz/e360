@@ -18,6 +18,16 @@ const PersonModel = mongoose.model("person", {
   lastname: String
 });
 
+const cartModel = mongoose.model("cart", {
+  productId: String,
+  user: {
+    firstName: String,
+    lastName: String,
+    email: String,
+    telNumber: String
+  },
+})
+
 
 
 
@@ -26,6 +36,7 @@ const PersonModel = mongoose.model("person", {
 module.exports = {
 
   Product,
-  PersonModel
+  PersonModel,
+  cartModel
 
 };

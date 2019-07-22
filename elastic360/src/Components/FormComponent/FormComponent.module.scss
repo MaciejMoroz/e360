@@ -1,24 +1,13 @@
 @import "../../GlobalStyles/variables.module";
 
-// form {
-//   display: flex;
-//   //   flex-direction: column;
-//   flex-wrap: wrap;
-//   max-width: 1200px;
-//   justify-content: center;
-//   @media (min-width: $bpoint-tab) {
-//     flex-direction: row;
-//   }
-// }
-
 input {
-  border: 2px solid #e8e9e9;
+  border: 2px solid $color-9;
   border-radius: 25px;
   height: 50px;
   padding: 0 $space;
-  color: #000;
+  color: $color-2;
   text-align: left;
-  background: #fff;
+  background: $color-1;
   font-size: $fontsize-label;
 
   @media (min-width: $bpoint-tab) {
@@ -30,7 +19,7 @@ label {
   display: block;
   margin-left: 30px;
   font-size: 14px;
-  color: #c5c7c9;
+  color: $color-8;
   line-height: 22px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -40,28 +29,30 @@ label {
   position: relative;
   bottom: -$space;
   text-align: center;
-
-  button {
-    position: relative;
-    display: inline-block;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 50px;
-    border-radius: 25px;
-    background: $color-6;
-    color: $color-1;
-    font-size: $fontsize-label;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    &:hover {
-      background-color: $color-7;
-      transition: 300ms ease all;
-    }
+}
+.btn {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 50px;
+  border-radius: 25px;
+  background: $color-6;
+  color: $color-1;
+  font-size: $fontsize-label;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-7;
+    transition: 300ms ease all;
   }
 }
+
 .error {
   text-align: center;
   color: $color-error;
   display: block;
+  font-size: $fontsize-label;
+  margin: 0;
 }

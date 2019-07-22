@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ThxPAge = () => {
+const ThxPAge = ({ cart }) => {
+    console.log(cart)
     return (
         <div>
             <p>thx Page</p>

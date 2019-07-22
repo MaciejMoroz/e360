@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductItemComponent from "../ProductItemComponent/ProductItemComponent"
+// import ProductItemContainer from "../../Redux/Containers/ButtonContainer"
 import style from "./ProductListComponent.module.scss"
 
 const ProductListComponent = ({ products }) => {
@@ -8,12 +9,8 @@ const ProductListComponent = ({ products }) => {
             <div className={style.productList}>
                 {products.map(product => {
                     return (
-
                         <ProductItemComponent key={product._id} product={product}>
-
                         </ProductItemComponent>
-
-
                     )
                 })}
             </div>

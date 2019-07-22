@@ -1,4 +1,6 @@
 import React from 'react';
+
+/* eslint-disable */
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import ProductDetalisComponent from "../ProductDetalisComponent/ProductDetalisComponent"
@@ -7,8 +9,6 @@ import Button from "../Button/Button"
 
 const ProductItemComponent = ({ product }) => {
     let price = (product.price).toString().split(".");
-    console.log(price);
-
 
     return (
 
@@ -26,6 +26,7 @@ const ProductItemComponent = ({ product }) => {
                     })}</ul>
                 </div>
 
+
                 <div className={styles.btn}>
                     <Link to={{
                         pathname: '/form',
@@ -33,7 +34,10 @@ const ProductItemComponent = ({ product }) => {
                             product: product
                         }
                     }}>
-                        < Button product={product} text="Buy Now" ></Button>
+                        <Button
+                            text="Buy Now"
+
+                        ></Button>
                     </Link>
                 </div>
             </div>

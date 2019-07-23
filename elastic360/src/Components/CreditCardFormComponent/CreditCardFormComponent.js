@@ -5,18 +5,13 @@ import formatString from "format-string-by-pattern";
 
 
 
-const CreditCardFormComponent = ({ addCardNumber, addCardName, addCardLastName, addCardValidThru }) => {
+const CreditCardFormComponent = ({ addCardNumber, addCardName, addCardLastName, addCardValidThru, addCardCvv, flipCard }) => {
     const [disabled, setDisabled] = useState(false);
     const [formData, setformData] = useState()
-    const [flip, flipAction] = useState(false);
-
 
     // console.log(product, history, userData);
-    const flipCard = () => {
-        console.log(flip);
-
-        flip === true ? flipAction(false) : flipAction(true)
-
+    const handleflipCard = (value) => {
+        flipCard(value)
     }
     const onSubmit = async (values) => {
 
@@ -54,6 +49,11 @@ const CreditCardFormComponent = ({ addCardNumber, addCardName, addCardLastName, 
     }
     const validThru = (value) => {
         value ? addCardValidThru(value) : addCardValidThru("MM/YY")
+
+    }
+
+    const cvv = (value) => {
+        value ? addCardCvv(value) : addCardCvv("xxx")
     }
 
     return (
@@ -151,16 +151,23 @@ const CreditCardFormComponent = ({ addCardNumber, addCardName, addCardLastName, 
 
 
                     <Field
-                        name="CVV" validate={composeValidators(required, mustBeNumber)}>
+
+
+                        name="CVV" validate={composeValidators(cvv, required, mustBeNumber)}>
                         {({ input, meta }) => (
                             <div >
                                 <label
                                     style={
                                         !meta.touched ? { color: "c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>CVV</label>
                                 <input
-                                    onBlur={console.log("asd")}
-                                    onClick={() => flipCard()}
+
                                     {...input}
+                                    onChange={(e) => {
+                                        input.onChange(e);
+                                    }}
+                                    onBlur={(() => handleflipCard(false)
+                                    )}
+                                    onFocus={(() => handleflipCard(true))}
 
                                     type="text"
                                     style={

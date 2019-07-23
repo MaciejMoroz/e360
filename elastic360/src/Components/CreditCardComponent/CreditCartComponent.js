@@ -3,14 +3,12 @@ import React, { useState } from 'react';
 import PaymentCard from 'react-payment-card-component'
 
 
-const CreditCardComponent = ({ product, history, userData, cardNumber, cardFirstName, cardLastName, cardValidThru }) => {
+const CreditCardComponent = ({ product, history, userData, cardNumber, cardFirstName, cardLastName, cardValidThru, cardCvv, isFliped }) => {
     const [flip, flipAction] = useState(false);
 
 
     // console.log(product, history, userData);
-    const flipCard = () => {
-
-    }
+    console.log(isFliped);
 
 
     return (
@@ -24,12 +22,11 @@ const CreditCardComponent = ({ product, history, userData, cardNumber, cardFirst
                     type="gold"
                     brand="mastercard"
                     number={cardNumber}
-                    cvv="202"
+                    cvv={cardCvv}
                     holderName={`${cardFirstName} ${cardLastName}`}
                     expiration={cardValidThru}
-                    flipped={flip}
+                    flipped={isFliped}
                 />
-                <button onClick={() => flipCard()} > flip</button>
 
 
             </div>

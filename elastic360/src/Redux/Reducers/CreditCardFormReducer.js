@@ -3,7 +3,9 @@ const initCard = {
     number: "xxxx-xxxx-xxxx-xxxx",
     firstName: "Your Name",
     lastName: "Your Last Name",
-    date: "MM/YY"
+    date: "MM/YY",
+    cvv: "XXX",
+    isFliped: false
 }
 
 const CreditCardFormContainer = (card = initCard, action) => {
@@ -29,6 +31,17 @@ const CreditCardFormContainer = (card = initCard, action) => {
             return {
                 ...card,
                 validThru: action.cardValidThru
+            }
+
+        case ACTION_TYPES.ADD_CARDCVV:
+            return {
+                ...card,
+                cvv: action.CardCvv
+            }
+        case ACTION_TYPES.FLIPCARD:
+            return {
+                ...card,
+                isFliped: action.isFliped
             }
 
         default:

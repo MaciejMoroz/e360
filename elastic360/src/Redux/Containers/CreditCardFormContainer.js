@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import CreditCardFormComponent from "../../Components/CreditCardFormComponent/CreditCardFormComponent"
-import { addCardNumber, addCardName, addCardLastName, addCardValidThru } from "../Actions/CreditCardActions";
+import { addCardNumber, addCardName, addCardLastName, addCardValidThru, addCardCvv, flipCard } from "../Actions/CreditCardActions";
 
 
 
@@ -9,7 +9,9 @@ const mapDispatchToProps = {
     addCardNumber,
     addCardName,
     addCardLastName,
-    addCardValidThru
+    addCardValidThru,
+    addCardCvv,
+    flipCard
 };
 
 const CreditCardContainer = connect(

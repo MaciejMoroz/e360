@@ -1,10 +1,10 @@
 export const ACTION_TYPES = {
     ADD_ORDER: "ADD_ORDER",
 };
-export const addOrder = (productId, firstName, lastName, email, tel) => ({
+export const addOrder = (product, firstName, lastName, email, tel) => ({
     type: ACTION_TYPES.ADD_ORDER,
     order: {
-        productId: productId,
+        product: product,
         user: {
             firstName: firstName,
             lastName: lastName,
@@ -13,6 +13,8 @@ export const addOrder = (productId, firstName, lastName, email, tel) => ({
         }
     }
 });
+
+
 
 
 

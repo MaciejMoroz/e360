@@ -3,8 +3,9 @@ import { ACTION_TYPES } from "../Actions/orderAction";
 const orderReducer = (order = [], action) => {
     switch (action.type) {
         case ACTION_TYPES.ADD_ORDER:
-            return [...order, action.order];
-
+            return {
+                order: action.order
+            }
         default:
             return order;
     }

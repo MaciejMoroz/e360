@@ -1,0 +1,83 @@
+@import "../../GlobalStyles/variables.module";
+
+.form {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"] {
+    border: 1px solid $color-6;
+    border-radius: 25px;
+    height: 50px;
+    padding: 0 $space;
+    color: $color-2;
+    text-align: left;
+    background: $color-1;
+    font-size: $fontsize-label;
+
+    @media (min-width: $bpoint-tab) {
+      width: 460px;
+      margin: 0 $base-unit $base-unit;
+    }
+  }
+  label {
+    display: block;
+    margin-left: 30px;
+    font-size: 14px;
+    color: $color-8;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+}
+
+.money {
+  margin: 0;
+}
+.change {
+  padding-left: 5px;
+  font-size: $font-size-h6;
+  vertical-align: text-top;
+  text-decoration: underline;
+}
+
+.currencySymbol {
+  font-size: $font-size-h5;
+}
+
+.priceDesc {
+  margin: 0 0 $base-unit;
+}
+.buttons {
+  position: relative;
+  bottom: -$space;
+  text-align: center;
+}
+.btn {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 50px;
+  border-radius: 25px;
+  background: $color-6;
+  color: $color-1;
+  font-size: $fontsize-label;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-7;
+    transition: 300ms ease all;
+  }
+}
+
+.radioGroup {
+  // margin: 0;
+
+  label {
+    display: inline;
+    color: $black;
+    margin: 0;
+    padding: 0 $base-unit;
+  }
+}

@@ -5,15 +5,14 @@ import CreditCardContainer from "../../Redux/Containers/CreditCardContainer"
 
 import CreditCardFormContainer from "../../Redux/Containers/CreditCardFormContainer"
 
-const PaymentPage = ({ product, history, userData }) => {
-    console.log(product, history, userData);
+const PaymentPage = ({ history }) => {
 
     return (
         <div className="component">
             <div className="wrapper">
                 <div className={styles.paymentPageBox}>
-                    <CreditCardContainer></CreditCardContainer>
-                    <CreditCardFormContainer></CreditCardFormContainer>
+                    <CreditCardContainer ></CreditCardContainer>
+                    <CreditCardFormContainer history={history}></CreditCardFormContainer>
                 </div>
             </div>
 

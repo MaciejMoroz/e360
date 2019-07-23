@@ -10,8 +10,6 @@ const mapStateToProps = state => ({
     cardValidThru: state.CreditCard.validThru,
     cardCvv: state.CreditCard.cvv,
     isFliped: state.CreditCard.isFliped
-
-
 });
 
 

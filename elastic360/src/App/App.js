@@ -7,8 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import TariffPageContainer from '../Redux/Containers/TariffPageContainer';
 import FormPage from '../Pages/FormPage/FormPage'
 import PaymentPage from "../Pages/PaymentPage/PaymentPage"
-import ThxPage from "../Pages/ThxPage/ThxPage"
-import ThxPageContainer from "../Redux/Containers/thxPageContainer"
+import ThxPageContainer from "../Redux/Containers/ThxPageContainer"
 
 
 function App() {

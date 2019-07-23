@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PaymentCard from 'react-payment-card-component'
 
 
 const CreditCardComponent = ({ product, history, userData, cardNumber, cardFirstName, cardLastName, cardValidThru, cardCvv, isFliped }) => {
-    const [flip, flipAction] = useState(false);
-
-
-    // console.log(product, history, userData);
-    console.log(isFliped);
 
 
     return (

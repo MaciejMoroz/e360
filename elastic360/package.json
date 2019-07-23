@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "final-form": "^4.18.2",
     "format-string-by-pattern": "^1.1.1",
     "formik": "^1.5.8",
     "node-sass": "^4.12.0",

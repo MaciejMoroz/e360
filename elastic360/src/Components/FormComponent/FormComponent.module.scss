@@ -1,29 +1,32 @@
 @import "../../GlobalStyles/variables.module";
+.form {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"] {
+    border: 1px solid $color-6;
+    border-radius: 25px;
+    height: 50px;
+    padding: 0 $space;
+    color: $color-2;
+    text-align: left;
+    background: $color-1;
+    font-size: $fontsize-label;
 
-input {
-  border: 2px solid $color-9;
-  border-radius: 25px;
-  height: 50px;
-  padding: 0 $space;
-  color: $color-2;
-  text-align: left;
-  background: $color-1;
-  font-size: $fontsize-label;
-
-  @media (min-width: $bpoint-tab) {
-    width: 460px;
-    margin: 0 $base-unit $base-unit;
+    @media (min-width: $bpoint-tab) {
+      width: 460px;
+      margin: 0 $base-unit $base-unit;
+    }
   }
-}
-label {
-  display: block;
-  margin-left: 30px;
-  font-size: 14px;
-  color: $color-8;
-  line-height: 22px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 5px;
+  label {
+    display: block;
+    margin-left: 30px;
+    font-size: 14px;
+    color: $color-8;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
 }
 .buttons {
   position: relative;

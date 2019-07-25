@@ -19,7 +19,7 @@ const TariffPage = ({ products, isLoading, isError, fetchProductsWithRedux }) =>
     }
     return (
         <>
-            <p>Tarrif Page</p>
+
             <ProductListComponent products={products}></ProductListComponent>
         </>
     )

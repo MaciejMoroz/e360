@@ -1,8 +1,6 @@
 import React from 'react';
-
 /* eslint-disable */
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
 import ProductDetalisComponent from "../ProductDetalisComponent/ProductDetalisComponent"
 import styles from "./ProductItemComponent.module.scss"
 import Button from "../Button/Button"

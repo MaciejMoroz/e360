@@ -6,6 +6,8 @@ const orderReducer = (order = [], action) => {
             return {
                 order: action.order
             }
+        case ACTION_TYPES.POST_OORDER:
+            return [...order, action.order];
         default:
             return order;
     }

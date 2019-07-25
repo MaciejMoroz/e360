@@ -1,10 +1,7 @@
 import React from 'react';
-
 import PaymentCard from 'react-payment-card-component'
 
-
-const CreditCardComponent = ({ product, history, userData, cardNumber, cardFirstName, cardLastName, cardValidThru, cardCvv, isFliped }) => {
-
+const CreditCardComponent = ({ cardNumber, cardFirstName, cardLastName, cardValidThru, cardCvv, isFliped }) => {
 
     return (
         <div className="component">

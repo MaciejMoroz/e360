@@ -2,8 +2,6 @@ import React from 'react';
 import styles from "./ThxPage.module.scss"
 
 const ThxPage = ({ order }) => {
-    console.log(order);
-
     return (
         <div>
             <h4>Thank you for the purchase <span className={styles.planName}>{order.product.name}</span> Plan</h4>

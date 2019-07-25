@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
+import { Form, Field } from 'react-final-form';
 /* eslint-disable */
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styles from "./FormComponent.module.scss";
-import { Form, Field } from 'react-final-form'
 
 const FormComponent = ({ history, addOrder, props }) => {
     const [disabled, setDisabled] = useState(false);
     const [formData, setformData] = useState()
 
     const onSubmit = async (values) => {
-
         let product = props.location.state.product,
             firstName = values.firstName,
             lastName = values.lastName,
             email = values.email,
             tel = values.telephoneNumber
-
         addOrder(product, firstName, lastName, email, tel)
-
         history.push('/payment');
     };
 
@@ -38,14 +35,14 @@ const FormComponent = ({ history, addOrder, props }) => {
     return (
         <Form
             onSubmit={onSubmit}
-            render={({ handleSubmit, submitting }) => (
-
+            render={({ handleSubmit }) => (
                 < form >
-                    <Field name="firstName" validate={composeValidators(required, mustBeText, mustBeFirstLetterCapital)}>
+                    <Field name="firstName"
+                        validate={composeValidators(required, mustBeText, mustBeFirstLetterCapital)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label style={
-                                    !meta.touched ? { color: "c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>First Name</label>
+                                    !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>First Name</label>
                                 <input
                                     {...input}
                                     type="text"
@@ -56,12 +53,13 @@ const FormComponent = ({ history, addOrder, props }) => {
                             </div>
                         )}
                     </Field>
-                    <Field name="lastName" validate={composeValidators(required, mustBeText, mustBeFirstLetterCapital)}>
+                    <Field name="lastName"
+                        validate={composeValidators(required, mustBeText, mustBeFirstLetterCapital)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label
                                     style={
-                                        !meta.touched ? { color: "c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Last Name</label>
+                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Last Name</label>
 
                                 <input
                                     {...input}
@@ -72,12 +70,13 @@ const FormComponent = ({ history, addOrder, props }) => {
                             </div>
                         )}
                     </Field>
-                    <Field name="email" validate={composeValidators(required, email)}>
+                    <Field name="email"
+                        validate={composeValidators(required, email)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label
                                     style={
-                                        !meta.touched ? { color: "c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>E-mail</label>
+                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>E-mail</label>
                                 <input
                                     {...input}
                                     type="email"
@@ -87,12 +86,13 @@ const FormComponent = ({ history, addOrder, props }) => {
                             </div>
                         )}
                     </Field>
-                    <Field name="telephoneNumber" validate={composeValidators(required, mustBeNumber, minLenght)}>
+                    <Field name="telephoneNumber"
+                        validate={composeValidators(required, mustBeNumber, minLenght)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label
                                     style={
-                                        !meta.touched ? { color: "c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Telephone number</label>
+                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Telephone number</label>
                                 <input
                                     {...input}
                                     type="text"
@@ -101,7 +101,6 @@ const FormComponent = ({ history, addOrder, props }) => {
                                 {meta.error && meta.touched && <p className={styles.error}>{meta.error}</p>}
                                 {(meta.error ? setDisabled(true) : setDisabled(false))}
                             </div>
-
                         )}
                     </Field>
 
@@ -115,9 +114,7 @@ const FormComponent = ({ history, addOrder, props }) => {
                         >
                             Submit
                          </button>
-
                     </div>
-
                 </form >
             )}
         />

@@ -7,14 +7,17 @@
     border: 1px solid $color-6;
     border-radius: 25px;
     height: 50px;
-    padding: 0 $space;
+    padding: 0 $base-unit;
     color: $color-2;
     text-align: left;
     background: $color-1;
     font-size: $fontsize-label;
+    width: 350px;
 
     @media (min-width: $bpoint-tab) {
-      width: 460px;
+      width: 400px;
+      padding: 0 $space;
+
       margin: 0 $base-unit $base-unit;
     }
   }
@@ -27,6 +30,38 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 5px;
+  }
+
+  &_short {
+    display: inline-block;
+    input[type="text"],
+    input[type="number"],
+    input[type="email"] {
+      border: 1px solid $color-6;
+      border-radius: 25px;
+      height: 50px;
+      padding: 0 $space;
+      color: $color-2;
+      text-align: left;
+      background: $color-1;
+      font-size: $fontsize-label;
+      width: 165px;
+      margin: 0 5px;
+
+      @media (min-width: $bpoint-tab) {
+        margin: 0 $base-unit $base-unit;
+      }
+    }
+    label {
+      display: block;
+      margin-left: 30px;
+      font-size: 14px;
+      color: $color-8;
+      line-height: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
   }
 }
 
@@ -71,13 +106,17 @@
   }
 }
 
-.radioGroup {
-  // margin: 0;
+label {
+  display: inline;
+  color: $black;
+  margin: 0;
+  padding: 0 $base-unit;
+}
 
-  label {
-    display: inline;
-    color: $black;
-    margin: 0;
-    padding: 0 $base-unit;
-  }
+.error {
+  text-align: center;
+  color: $color-error;
+  display: block;
+  font-size: $fontsize-label;
+  margin: 0;
 }

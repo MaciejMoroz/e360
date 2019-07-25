@@ -13,12 +13,7 @@ const Product = mongoose.model("Product", {
   product_detalis: []
 });
 
-const PersonModel = mongoose.model("person", {
-  firstname: String,
-  lastname: String
-});
-
-const cartModel = mongoose.model("cart", {
+const Order = mongoose.model("order", {
   productId: String,
   user: {
     firstName: String,
@@ -26,17 +21,17 @@ const cartModel = mongoose.model("cart", {
     email: String,
     telNumber: String
   },
+  pay: {
+    itWasPaid: Boolean,
+    toPay: Number,
+    timeOFSub: Number,
+    quantOfsubscriptions: Number
+  },
 })
-
-
-
-
-
 
 module.exports = {
 
   Product,
-  PersonModel,
-  cartModel
+  Order
 
 };

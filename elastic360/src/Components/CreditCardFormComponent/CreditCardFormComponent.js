@@ -1,36 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import styles from "./CreditCardFormComponent.module.scss"
-import { Form, Field } from 'react-final-form'
+import React, { useState } from 'react';
+import styles from "./CreditCardFormComponent.module.scss";
+import { Form, Field } from 'react-final-form';
 import formatString from "format-string-by-pattern";
-import store from "../../Redux/Store/store"
 
+const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardLastName, addCardValidThru, addCardCvv, flipCard, order, addOrder, postOrder }) => {
 
-
-const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardLastName, addCardValidThru, addCardCvv, flipCard, order }) => {
     const [YrSubscription, setYrSubscription] = useState(12);
     const [numberOfSubscription, setnumberOfSubscription] = useState(1);
-
-
-
+    const [disabled, setDisabled] = useState(false);
 
     const product = order.product;
     const prodcutPrice = order.product.price
-    const price = prodcutPrice * YrSubscription * numberOfSubscription
+    const price = (prodcutPrice * YrSubscription * numberOfSubscription).toFixed(2)
     const priceToString = price.toString().split(".");
 
 
 
-    const [disabled, setDisabled] = useState(false);
     const handleflipCard = (value) => {
         flipCard(value);
     }
 
     const onSubmit = async () => {
+        let product = order.product,
+            productId = order.product._id,
+            firstName = order.user.firstName,
+            lastName = order.user.lastName,
+            email = order.user.email,
+            tel = order.user.tel,
+            itWasPaid = true,
+            toPay = price,
+            timeOFSub = YrSubscription,
+            quantOfsubscriptions = numberOfSubscription
+
+        addOrder(product, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions)
+        postOrder(productId, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions)
+
+
         history.push('/thx');
 
     };
+
     //validation
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/);
+    const dataRegex = new RegExp(/^\d+(\/\d+)*$/);
     const required = value => (value ? undefined : "Field required");
     const mustBeText = value => (!isNaN(value) ? "Must be a text" : undefined);
     const mustBeFirstLetterCapital = value =>
@@ -38,11 +50,11 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
     const mustBeCardNo = value => (isNaN(value.split("-").join("")) ? "Must be a number" : undefined);
 
     const mustBeNumber = value => (isNaN(value) ? "Must be a number" : undefined);
-    const character16Lenght = value => value.split("-").join("").length !== 16 ? "16 numbers required" : undefined;
+    const character16Lenght = value => value.split("-").join("").length !== 16 ? "The card number is too short" : undefined;
+    const dataValid = value => (dataRegex.test(value)) ? undefined : "Must be a number";
 
     const composeValidators = (...validators) => value =>
         validators.reduce((error, validator) => error || validator(value), undefined);
-
 
     //set state    
     const cardNumber = (value) => {
@@ -90,6 +102,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             <div className={styles.form}>
                                 <label style={
                                     !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Card no.</label>
+
                                 <input {...input}
                                     onChange={(e) => {
                                         input.onChange(e);
@@ -103,11 +116,14 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             </div>
                         )}
                     </Field>
-                    <Field name="firstName" validate={composeValidators(firstName, required, mustBeText, mustBeFirstLetterCapital)}>
+                    <Field name="firstName"
+                        validate={composeValidators(firstName, required, mustBeText, mustBeFirstLetterCapital)}>
                         {({ input, meta }) => (
+
                             <div className={styles.form}>
                                 <label style={
                                     !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>First Name</label>
+
                                 <input {...input}
                                     onChange={(e) => {
                                         input.onChange(e);
@@ -119,7 +135,8 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             </div>
                         )}
                     </Field>
-                    <Field name="lastName" validate={composeValidators(lastName, required, mustBeText, mustBeFirstLetterCapital)}>
+                    <Field name="lastName"
+                        validate={composeValidators(lastName, required, mustBeText, mustBeFirstLetterCapital)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label style={
@@ -140,9 +157,9 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                         parse={formatString("MM/YY")}
                         placeholder="MM/YY"
                         name="validThru"
-                        validate={composeValidators(validThru, mustBeNumber, required)}>
+                        validate={composeValidators(validThru, dataValid, required)}>
                         {({ input, meta }) => (
-                            <div className={styles.form}>
+                            <div className={styles.form_short}>
                                 <label style={
                                     !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Valid Thru</label>
                                 <input
@@ -160,10 +177,10 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                     <Field
                         name="CVV"
                         placeholder="XXX"
-                        parse={formatString("xxx")}
-                        validate={composeValidators(cvv, required)}>
+                        parse={formatString("XXX")}
+                        validate={composeValidators(cvv, mustBeNumber, required)}>
                         {({ input, meta }) => (
-                            <div className={styles.form}>
+                            <div className={styles.form_short}>
                                 <label
                                     style={
                                         !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>CVV</label>
@@ -175,27 +192,22 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                                     onBlur={(() => handleflipCard(false)
                                     )}
                                     onFocus={(() => handleflipCard(true))}
-
                                     type="number"
                                     style={
-
                                         !meta.touched ? { border: " solid 1px #3b55e6" } : meta.touched && meta.valid ? { border: "1px green solid" } : { border: "solid 1px red" }} />
+                                {/* {console.log(meta)} */}
+                                {/* onBlur psuje validacje,konsolapokazuje prawidłowe dane, nie sąwyswietlane */}
                                 {meta.error && meta.touched && <p className={styles.error}>{meta.error}</p>}
-                                {(meta.error ? setDisabled(true) : setDisabled(false))}
+                                {meta.error ? setDisabled(true) : setDisabled(false)}
                             </div>
                         )}
                     </Field>
-
-
-
                     <h4>Product plan: {product.name}</h4>
                     <Field
-
                         type="radio"
                         value="12"
                         name="timeOfSubscribtion"
                         initialValue="12"
-
                         validate={composeValidators(isYrChecked)}>
                         {({ input }) => (
                             <div className={styles.radioGroup} >
@@ -204,8 +216,6 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                                     name="timeOfSubscribtion"
                                     value="12"
                                     type="radio"
-
-
                                 />
                                 <label>1 year</label>
                             </div>
@@ -228,29 +238,24 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             </div>
                         )}
                     </Field>
-
                     <Field
                         name="numberOfLicenses"
                         validate={composeValidators(numberOfLicenses)}>
-                        {({ input, meta }) => (
-                            <div className={styles.form}>
+                        {({ input }) => (
+                            <div className={styles.form_short}>
                                 <label>Number of licenses</label>
                                 <input
                                     {...input}
-
                                     value={numberOfSubscription}
                                     type="number"
                                     min="1"
-                                    style={
-                                        !meta.touched ? { border: " solid 1px #3b55e6" } : meta.touched && meta.valid ? { border: "1px green solid" } : { border: "solid 1px red" }} />
-                                {meta.error && meta.touched && <p className={styles.error}>{meta.error}</p>}
+                                ></input>
                             </div>
                         )}
                     </Field>
 
                     <h4 className={styles.money}>total {priceToString[0]}
                         <span className={styles.change}>{priceToString[1]}</span> <span className={styles.currencySymbol}>&#8364;</span><span> </span></h4>
-
 
                     <div className={styles.buttons}>
                         <button className={styles.btn}
@@ -262,14 +267,10 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                         >
                             Pay
                         </button>
-
-
                     </div>
-
                 </form >
             )}
         />
-
     )
 }
 

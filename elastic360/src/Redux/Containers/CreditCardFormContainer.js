@@ -2,6 +2,11 @@ import { connect } from "react-redux";
 
 import CreditCardFormComponent from "../../Components/CreditCardFormComponent/CreditCardFormComponent"
 import { addCardNumber, addCardName, addCardLastName, addCardValidThru, addCardCvv, flipCard } from "../Actions/CreditCardActions";
+import { addOrder, postOrder } from "../Actions/orderAction";
+
+
+
+
 const mapStateToProps = state => ({
     order: state.order.order
 })
@@ -11,7 +16,9 @@ const mapDispatchToProps = {
     addCardLastName,
     addCardValidThru,
     addCardCvv,
-    flipCard
+    flipCard,
+    addOrder,
+    postOrder
 };
 
 

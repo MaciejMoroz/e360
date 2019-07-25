@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styles from "./FormComponent.module.scss";
 
-const FormComponent = ({ history, addOrder, props }) => {
+const FormComponent = ({ history, addOrder, props, language }) => {
     const [disabled, setDisabled] = useState(false);
     const [formData, setformData] = useState()
 
@@ -21,14 +21,17 @@ const FormComponent = ({ history, addOrder, props }) => {
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/)
     const emailRegExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
 
-    const required = value => (value ? undefined : "Field required");
-    const mustBeText = value => (!isNaN(value) ? "Must be a text" : undefined)
-    const mustBeFirstLetterCapital = value =>
-        (isFirstLetterIsCapital.test(value[0])) ? undefined : "The first letter must be a capital";
-    const mustBeNumber = value => (isNaN(value) ? "Must be a number" : undefined);
-    const minLenght = value => value.length < 5 ? "atleast 6 numbers" : undefined;
 
-    const email = value => emailRegExp.test(String(value).toLowerCase()) ? undefined : "Incorrect email address";
+
+
+    const required = value => (value ? undefined : language === "PL" ? "Pole wymagane" : "Field required");
+    const mustBeText = value => (!isNaN(value) ? language === "PL" ? "Musi być tekst" : "Must be a text" : undefined)
+    const mustBeFirstLetterCapital = value =>
+        (isFirstLetterIsCapital.test(value[0])) ? undefined : language === "PL" ? "Musi zacznać się z dużej litery" : "The first letter must be a capital";
+    const mustBeNumber = value => (isNaN(value) ? language === "PL" ? "Musi być liczbą" : "Must be a number" : undefined);
+    const minLenght = value => value.length < 5 ? language === "PL" ? "Minimum 6 liczb" : "atleast 6 numbers" : undefined;
+
+    const email = value => emailRegExp.test(String(value).toLowerCase()) ? undefined : language === "PL" ? "Błędny adres" : "Incorrect email address";
     const composeValidators = (...validators) => value =>
         validators.reduce((error, validator) => error || validator(value), undefined);
 
@@ -42,7 +45,7 @@ const FormComponent = ({ history, addOrder, props }) => {
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label style={
-                                    !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>First Name</label>
+                                    !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>{language === "PL" ? "Imię" : "First Name"}</label>
                                 <input
                                     {...input}
                                     type="text"
@@ -59,7 +62,7 @@ const FormComponent = ({ history, addOrder, props }) => {
                             <div className={styles.form}>
                                 <label
                                     style={
-                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Last Name</label>
+                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>{language === "PL" ? "Nazwisko" : "Last Name"}</label>
 
                                 <input
                                     {...input}
@@ -92,7 +95,7 @@ const FormComponent = ({ history, addOrder, props }) => {
                             <div className={styles.form}>
                                 <label
                                     style={
-                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>Telephone number</label>
+                                        !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>{language === "PL" ? "Numer telefonu" : "Telephone Number"}</label>
                                 <input
                                     {...input}
                                     type="text"
@@ -112,8 +115,8 @@ const FormComponent = ({ history, addOrder, props }) => {
                             }}
                             disabled={disabled}
                         >
-                            Submit
-                         </button>
+                            {language === "PL" ? "Potwierdź" : "Confirm"}
+                        </button>
                     </div>
                 </form >
             )}

@@ -8,7 +8,7 @@ const loggerMiddleware = createLogger();
 
 const store = createStore(
     reducer,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(loggerMiddleware, thunk))
 );
 
 export default store;

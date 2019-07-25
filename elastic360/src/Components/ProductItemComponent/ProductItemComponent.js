@@ -5,8 +5,11 @@ import ProductDetalisComponent from "../ProductDetalisComponent/ProductDetalisCo
 import styles from "./ProductItemComponent.module.scss"
 import Button from "../Button/Button"
 
-const ProductItemComponent = ({ product }) => {
-    let price = (product.price).toString().split(".");
+const ProductItemComponent = ({ product, language, euroExchangeRate }) => {
+
+    const isPLN = language === "PL" ? euroExchangeRate.rates[0].ask : 1;
+    const price = ((product.price * isPLN).toFixed(2)).toString().split(".");
+    const btnText = language === "PL" ? "Kup Teraz" : "Buy Now";
 
     return (
 
@@ -14,8 +17,14 @@ const ProductItemComponent = ({ product }) => {
             <div className={styles.productItem}>
                 <div>
                     <h4>{product.name}</h4>
-                    <h1 className={styles.money}>{price[0]}
-                        <span className={styles.change}>{price[1]}</span> <span className={styles.currencySymbol}>&#8364;</span></h1>
+                    <h1 className={styles.money}>
+                        {price[0]}
+                        <span className={styles.change}>{price[1]}</span>
+                        <span className={styles.currencySymbol}>
+                            {language === "PL" ? " zł" : <span>&#8364;</span>}
+
+                        </span>
+                    </h1>
                     <p className={styles.priceDesc}>{product.price_desc}</p>
                     <ul>{product.product_detalis.map((detal, index) => {
                         return (
@@ -32,10 +41,8 @@ const ProductItemComponent = ({ product }) => {
                             product: product
                         }
                     }}>
-                        <Button
-                            text="Buy Now"
-
-                        ></Button>
+                        <Button text={btnText}>
+                            }</Button>
                     </Link>
                 </div>
             </div>

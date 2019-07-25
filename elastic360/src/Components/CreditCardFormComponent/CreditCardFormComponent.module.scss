@@ -1,9 +1,23 @@
 @import "../../GlobalStyles/variables.module";
 
+.formBox {
+  margin: $space;
+  text-align: center;
+}
+
+.radio_box {
+  text-align: left;
+  margin-top: $base-unit;
+  // margin-right: $base-unit;
+  @media (min-width: $bpoint-tab) {
+    margin-right: $space * 1.1;
+  }
+}
 .form {
   input[type="text"],
   input[type="number"],
   input[type="email"] {
+    margin-bottom: $base-unit;
     border: 1px solid $color-6;
     border-radius: 25px;
     height: 50px;
@@ -17,7 +31,6 @@
     @media (min-width: $bpoint-tab) {
       width: 400px;
       padding: 0 $space;
-
       margin: 0 $base-unit $base-unit;
     }
   }
@@ -31,37 +44,43 @@
     text-transform: uppercase;
     margin-bottom: 5px;
   }
+}
+.short_box {
+  margin-bottom: $space;
+  display: flex;
+  justify-content: center;
+}
+.form_short {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"] {
+    margin-bottom: $base-unit;
+    border: 1px solid $color-6;
+    border-radius: 25px;
+    height: 50px;
+    padding: 0 $base-unit;
+    color: $color-2;
+    text-align: left;
+    background: $color-1;
+    font-size: $fontsize-label;
+    width: 165px;
+    margin: 0 5px;
 
-  &_short {
-    display: inline-block;
-    input[type="text"],
-    input[type="number"],
-    input[type="email"] {
-      border: 1px solid $color-6;
-      border-radius: 25px;
-      height: 50px;
+    @media (min-width: $bpoint-tab) {
       padding: 0 $space;
-      color: $color-2;
-      text-align: left;
-      background: $color-1;
-      font-size: $fontsize-label;
-      width: 165px;
-      margin: 0 5px;
-
-      @media (min-width: $bpoint-tab) {
-        margin: 0 $base-unit $base-unit;
-      }
+      margin: 0 $base-unit $base-unit;
+      width: 180px;
     }
-    label {
-      display: block;
-      margin-left: 30px;
-      font-size: 14px;
-      color: $color-8;
-      line-height: 22px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
+  }
+  label {
+    display: block;
+    // margin-left: 30px;
+    font-size: 14px;
+    color: $color-8;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
   }
 }
 

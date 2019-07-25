@@ -3,20 +3,28 @@ import { connect } from "react-redux";
 import TarrifPage from "../../Pages/TariffPage/TariffPage";
 
 import { fetchProductsWithRedux } from "../Actions/ProductActions";
+import { fetchCurrencysWithRedux } from "../Actions/CurrencyActions"
+import { changeLanguage } from "../Actions/LanguageAction"
 
 const mapStateToProps = state => ({
     products: state.products.products,
     isLoading: state.products.isLoading,
-    isError: state.products.isError
+    isError: state.products.isError,
+    isLoadingCurrency: state.currency.isLoading,
+    isErrorCurrency: state.currency.isError,
+    language: state.language
 });
 
 const mapDispatchToProps = {
-    fetchProductsWithRedux
+    fetchCurrencysWithRedux,
+    fetchProductsWithRedux,
+    changeLanguage
+
 };
 
-const HomePageContainer = connect(
+const TarrifPageContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(TarrifPage);
 
-export default HomePageContainer;
+export default TarrifPageContainer;

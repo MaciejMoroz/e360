@@ -1,0 +1,22 @@
+@import "../variables.module";
+.wrapper {
+  padding-left: $base-unit;
+  padding-right: $base-unit;
+  position: relative;
+  max-width: $cont-max-width;
+  min-width: $cont-min-width;
+
+  @media (min-width: $bpoint-tab) {
+    padding-left: $space;
+    padding-right: $space;
+  }
+
+  @media (min-width: $bpoint-desk) {
+    max-width: $cont-max-width;
+    margin: 0 auto;
+  }
+  @media (min-width: $bpoint-desk) {
+    max-width: $cont-max-width;
+    margin: 0 auto;
+  }
+}

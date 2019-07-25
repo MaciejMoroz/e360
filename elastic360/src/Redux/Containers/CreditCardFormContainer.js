@@ -8,7 +8,9 @@ import { addOrder, postOrder } from "../Actions/orderAction";
 
 
 const mapStateToProps = state => ({
-    order: state.order.order
+    order: state.order.order,
+    language: state.language,
+    euroExchangeRate: state.currency.currency
 })
 const mapDispatchToProps = {
     addCardNumber,

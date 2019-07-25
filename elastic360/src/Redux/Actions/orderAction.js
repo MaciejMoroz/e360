@@ -28,12 +28,13 @@ export const addOrder = (product, firstName, lastName, email, tel, itWasPaid, to
 
 
 
-export const postOrder = ({ productId, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions }) => {
+export const postOrder = (productId, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions) => {
     const URL = "http://localhost:4001";
-    return (dispatch) => {
+    return () => {
+
         return axios.post(`${URL}/order/${productId}/${firstName}/${lastName}/${encodeURIComponent(email)}/${tel}/${itWasPaid}/${toPay}/${timeOFSub}/${quantOfsubscriptions}`)
             .then(response => {
-                dispatch(postOrderSuccess(response))
+                postOrderSuccess(response);
             })
             .catch(error => {
                 throw (error);

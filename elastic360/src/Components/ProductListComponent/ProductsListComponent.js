@@ -1,16 +1,20 @@
 import React from 'react';
-import ProductItemComponent from "../ProductItemComponent/ProductItemComponent"
-// import ProductItemContainer from "../../Redux/Containers/ButtonContainer"
+import ProductItemContainer from "../../Redux/Containers/ProductItemContainer"
 import style from "./ProductListComponent.module.scss"
 
-const ProductListComponent = ({ products }) => {
+const ProductListComponent = ({ products, language }) => {
+
+    console.log(language)
+
+    console.log(products.filter(product => product.lng === language))
+
     return (
         <>
             <div className={style.productList}>
-                {products.map(product => {
+                {products.filter(product => product.lng === language).map(product => {
                     return (
-                        <ProductItemComponent key={product._id} product={product}>
-                        </ProductItemComponent>
+                        <ProductItemContainer key={product._id} product={product} >
+                        </ProductItemContainer>
                     )
                 })}
             </div>

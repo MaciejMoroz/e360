@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+// eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import styles from "./ProgresBarComponent.module.scss"
 
@@ -12,7 +13,7 @@ class ProgresBarComponent extends React.Component {
         history: PropTypes.object.isRequired
     };
     render() {
-        const { location } = this.props;
+        const { location, language } = this.props;
         let disabledLink = "";
 
         const isForm = () => {
@@ -36,15 +37,25 @@ class ProgresBarComponent extends React.Component {
             }
         }
 
-
         return (
             <>
                 <div className={styles.progresBox}>
 
                     <ul>
-                        <li className={styles.active}> <Link to="/">Chose plan</Link></li>
-                        <li className={isForm()}> <Link to={disabledLink}><span disabled={disabledLink}>Personal data</span></Link></li>
-                        <li className={isCardForm()}> <span>Payment</span></li>
+                        <li className={styles.active}>
+                            <Link to="/">{
+                                language === "PL" ? "Wybierz plan" : "Chose a plan"}</Link>
+                        </li>
+
+                        <li className={isForm()}>
+                            <Link to={disabledLink}>
+                                <span disabled={disabledLink}>
+                                    {language === "PL" ? "Dane personalne" : "Personal data"}</span>
+                            </Link>
+                        </li>
+                        <li className={isCardForm()}>
+                            {language === "PL" ? "Zapłać" : "Pay"}
+                        </li>
                     </ul>
                 </div >
             </>

@@ -5,7 +5,7 @@ import ProductDetalisComponent from "../ProductDetalisComponent/ProductDetalisCo
 import styles from "./ProductItemComponent.module.scss"
 import Button from "../Button/Button"
 
-const ProductItemComponent = ({ product, language, euroExchangeRate }) => {
+const ProductItemComponent = ({ product, addOrder, language, euroExchangeRate }) => {
 
     const isPLN = language === "PL" ? euroExchangeRate.rates[0].ask : 1;
     const price = ((product.price * isPLN).toFixed(2)).toString().split(".");
@@ -43,7 +43,7 @@ const ProductItemComponent = ({ product, language, euroExchangeRate }) => {
                         }
 
                     }}>
-                        <Button text={btnText}>
+                        <Button text={btnText} addOrder={addOrder} product={product}>
                             }</Button>
                     </Link>
                 </div>

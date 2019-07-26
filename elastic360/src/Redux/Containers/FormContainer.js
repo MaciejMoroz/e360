@@ -4,7 +4,8 @@ import FormComponent from "../../Components/FormComponent/FormComponent"
 import { addOrder } from "../Actions/orderAction";
 
 const mapStateToProps = state => ({
-    language: state.language
+    language: state.language,
+    product: state.order.product
 });
 
 const mapDispatchToProps = {

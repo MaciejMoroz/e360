@@ -12,10 +12,9 @@ const Nav = ({ changeLanguage, language }) => {
 
     return (
         <>
-
             <Component>
                 <div className={styles.navBox}></div>
-                <ProgresBarComponentWithRouter></ProgresBarComponentWithRouter>
+                <ProgresBarComponentWithRouter language={language}></ProgresBarComponentWithRouter>
                 <div className={styles.lng}>
                     <button
                         onClick={() => handleClick("EN")}

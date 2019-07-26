@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Form, Field } from 'react-final-form';
 /* eslint-disable */
 import styles from "./FormComponent.module.scss";
+import { regExpLiteral } from '@babel/types';
 
-const FormComponent = ({ history, addOrder, props, language }) => {
+const FormComponent = ({ product, history, addOrder, props, language }) => {
     const [disabled, setDisabled] = useState(false);
     const [formData, setformData] = useState()
 
-    const onSubmit = async (values) => {
-        let product = props.location.state.product,
-            firstName = values.firstName,
+    const onSubmit = async (values, product) => {
+        let firstName = values.firstName,
             lastName = values.lastName,
             email = values.email,
             tel = values.telephoneNumber
@@ -18,6 +18,7 @@ const FormComponent = ({ history, addOrder, props, language }) => {
     };
 
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/)
+    const nameRegExp = new RegExp(/^[a-zA-Z-ąśłŁćźżĄŚŹĆŻÓóZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/);
     const emailRegExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
 
     const required = value => (value ? undefined : language === "PL" ? "Pole wymagane" : "Field required");
@@ -26,6 +27,8 @@ const FormComponent = ({ history, addOrder, props, language }) => {
         (isFirstLetterIsCapital.test(value[0])) ? undefined : language === "PL" ? "Musi zacznać się z dużej litery" : "The first letter must be a capital";
     const mustBeNumber = value => (isNaN(value) ? language === "PL" ? "Musi być liczbą" : "Must be a number" : undefined);
     const minLenght = value => value.length < 5 ? language === "PL" ? "Minimum 6 liczb" : "atleast 6 numbers" : undefined;
+
+    const firsLastNeme = value => nameRegExp.test(value) ? undefined : language === "PL" ? "Niepoprawne znaki" : "incorrect characters";
 
     const email = value => emailRegExp.test(String(value).toLowerCase()) ? undefined : language === "PL" ? "Błędny adres" : "Incorrect email address";
     const composeValidators = (...validators) => value =>
@@ -37,7 +40,7 @@ const FormComponent = ({ history, addOrder, props, language }) => {
             render={({ handleSubmit }) => (
                 < form >
                     <Field name="firstName"
-                        validate={composeValidators(required, mustBeText, mustBeFirstLetterCapital)}>
+                        validate={composeValidators(required, firsLastNeme, mustBeText, mustBeFirstLetterCapital)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label style={
@@ -53,7 +56,7 @@ const FormComponent = ({ history, addOrder, props, language }) => {
                         )}
                     </Field>
                     <Field name="lastName"
-                        validate={composeValidators(required, mustBeText, mustBeFirstLetterCapital)}>
+                        validate={composeValidators(required, firsLastNeme, mustBeText, mustBeFirstLetterCapital)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label

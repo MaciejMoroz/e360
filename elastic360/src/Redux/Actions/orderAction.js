@@ -5,6 +5,7 @@ export const ACTION_TYPES = {
     POST_OORDER: "POST_OORDER"
 
 };
+
 export const addOrder = (product, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions) => ({
     type: ACTION_TYPES.ADD_ORDER,
     order: {

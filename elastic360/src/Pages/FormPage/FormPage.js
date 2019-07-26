@@ -4,11 +4,14 @@ import styles from "./FormPage.module.scss"
 import Fade from 'react-reveal/Fade';
 
 
-const FormPage = (props) => {
+const FormPage = (props, product) => {
+    // console.console.log(product);
     return (
         <Fade left>
+
+
             <div className={styles.formBox}>
-                <FormContainer history={props.history} props={props}></FormContainer>
+                <FormContainer history={props.history} props={props} product={product}></FormContainer>
             </div>
         </Fade>
     );

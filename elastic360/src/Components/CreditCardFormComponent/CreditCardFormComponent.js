@@ -45,6 +45,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
 
     //validation
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/);
+    const nameRegExp = new RegExp(/^[a-zA-Z-ąśłŁćźżĄŚŹĆŻÓóZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/);
     const dataRegex = new RegExp(/(?:0[1-9]|1[0-2])\/[0-9]{2}/);
     const currentDate = new Date().toLocaleString(["en-US"], {
         month: "2-digit",
@@ -56,6 +57,8 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
     const required = value => (value ? undefined : language === "PL" ? "Pole wymagane" : "Field required");
 
     const mustBeText = value => (!isNaN(value) ? language === "PL" ? "Musi być tekst" : "Must be a text" : undefined);
+
+    const firsLastNeme = value => nameRegExp.test(value) ? undefined : language === "PL" ? "Niepoprawne znaki" : "incorrect characters";
 
     const mustBeFirstLetterCapital = value =>
         (isFirstLetterIsCapital.test(value[0])) ? undefined : language === "PL" ? "Musi zacznać się z dużej litery" : "The first letter must be a capital";
@@ -157,7 +160,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             )}
                         </Field>
                         <Field name="firstName"
-                            validate={composeValidators(firstName, required, mustBeText, mustBeFirstLetterCapital)}>
+                            validate={composeValidators(firstName, firsLastNeme, required, mustBeText, mustBeFirstLetterCapital)}>
                             {({ input, meta }) => (
 
                                 <div className={styles.form}>
@@ -176,7 +179,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             )}
                         </Field>
                         <Field name="lastName"
-                            validate={composeValidators(lastName, required, mustBeText, mustBeFirstLetterCapital)}>
+                            validate={composeValidators(lastName, firsLastNeme, required, mustBeText, mustBeFirstLetterCapital)}>
                             {({ input, meta }) => (
                                 <div className={styles.form}>
                                     <label style={

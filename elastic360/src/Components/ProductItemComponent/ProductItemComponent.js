@@ -39,7 +39,9 @@ const ProductItemComponent = ({ product, language, euroExchangeRate }) => {
                         pathname: '/form',
                         state: {
                             product: product
+
                         }
+
                     }}>
                         <Button text={btnText}>
                             }</Button>

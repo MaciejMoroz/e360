@@ -1,14 +1,10 @@
 import React from 'react';
 import FormContainer from "../../Redux/Containers/FormContainer"
-import Styles from "./FormPage.module.scss"
-
-
-
+import styles from "./FormPage.module.scss"
 
 const FormPage = (props) => {
     return (
-
-        <div className={Styles.formBox}>
+        <div className={styles.formBox}>
             <FormContainer history={props.history} props={props}></FormContainer>
         </div>
 

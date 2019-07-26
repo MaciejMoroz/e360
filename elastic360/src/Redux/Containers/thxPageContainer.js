@@ -7,7 +7,6 @@ const mapStateToProps = state => ({
     language: state.language
 })
 
-
 const ThxPageContainer = connect(
     mapStateToProps,
 )(ThxPage);

@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from "./PaymentPage.module.scss"
 
-
-
-
 import CreditCardContainer from "../../Redux/Containers/CreditCardContainer"
 import CreditCardFormContainer from "../../Redux/Containers/CreditCardFormContainer"
 

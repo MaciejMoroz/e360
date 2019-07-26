@@ -11,15 +11,14 @@ import FormPage from '../Pages/FormPage/FormPage'
 import PaymentPage from "../Pages/PaymentPage/PaymentPage"
 import ThxPageContainer from "../Redux/Containers/ThxPageContainer"
 
-
 function App() {
 
   return (
     <Provider store={store}>
       <Component>
         <Wrapper>
-          <NavContainer></NavContainer>
           <Router>
+            <NavContainer></NavContainer>
             <Route exact path="/" component={TariffPageContainer} />
             <Route path="/form" component={FormPage} />
             <Route path="/payment" component={PaymentPage} />

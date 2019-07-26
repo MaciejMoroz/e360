@@ -1,7 +1,16 @@
 @import "../../GlobalStyles/variables.module";
 
-.nav {
-  text-align: right;
+.navBox {
+  height: $space * 4;
+  @media (min-width: $bpoint-tab) {
+    height: $space * 3;
+  }
+}
+.lng {
+  position: absolute;
+  right: $space;
+  top: 0;
+  margin: 0;
 }
 
 .btn {

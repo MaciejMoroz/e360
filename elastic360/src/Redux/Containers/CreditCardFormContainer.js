@@ -4,9 +4,6 @@ import CreditCardFormComponent from "../../Components/CreditCardFormComponent/Cr
 import { addCardNumber, addCardName, addCardLastName, addCardValidThru, addCardCvv, flipCard } from "../Actions/CreditCardActions";
 import { addOrder, postOrder } from "../Actions/orderAction";
 
-
-
-
 const mapStateToProps = state => ({
     order: state.order.order,
     language: state.language,

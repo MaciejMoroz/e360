@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 
 import CreditCardComponent from "../../Components/CreditCardComponent/CreditCartComponent";
 
-
 const mapStateToProps = state => ({
     cardNumber: state.CreditCard.number,
     cardFirstName: state.CreditCard.firstName,

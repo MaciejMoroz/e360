@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import style from "./TariffPage.module.scss"
 import LoadingGif from "../../img/Loading.gif"
 
-
-
 import ProductListContainer from "../../Redux/Containers/ProductListContainer"
 
-const TariffPage = ({ products, isLoading, isError, fetchProductsWithRedux, changeLanguage, fetchCurrencysWithRedux, isErrorCurrency, isLoadingCurrency, euroExchangeRate }) => {
+const TariffPage = ({ products, isLoading, isError, fetchProductsWithRedux, changeLanguage, fetchCurrencysWithRedux, isErrorCurrency, isLoadingCurrency }) => {
     useEffect(() => {
         changeLanguage("EN");
         fetchCurrencysWithRedux();
@@ -22,7 +20,7 @@ const TariffPage = ({ products, isLoading, isError, fetchProductsWithRedux, chan
     if (isLoadingCurrency || isLoading) {
         return <div className={style.center}><img src={LoadingGif} alt="loading..." /></div>;
     }
-    console.log(euroExchangeRate)
+
     return (
 
         <ProductListContainer products={products}></ProductListContainer>

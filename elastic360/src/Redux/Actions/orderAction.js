@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const ACTION_TYPES = {
     ADD_ORDER: "ADD_ORDER",
     POST_OORDER: "POST_OORDER"
@@ -25,7 +24,6 @@ export const addOrder = (product, firstName, lastName, email, tel, itWasPaid, to
         }
     }
 });
-
 
 
 export const postOrder = (productId, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions) => {

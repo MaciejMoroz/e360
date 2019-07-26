@@ -3,11 +3,6 @@ import ProductItemContainer from "../../Redux/Containers/ProductItemContainer"
 import style from "./ProductListComponent.module.scss"
 
 const ProductListComponent = ({ products, language }) => {
-
-    console.log(language)
-
-    console.log(products.filter(product => product.lng === language))
-
     return (
         <>
             <div className={style.productList}>

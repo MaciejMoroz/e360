@@ -67,14 +67,17 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
 
     const character16Lenght = value => value.split("-").join("").length !== 16 ? language === "PL" ? "Numer karty jest za krótki" : "The card number is too short" : undefined;
 
+    const character3Lenght = value => value === undefined ? 111 : value.length !== 3 ? language === "PL" ? "Numer jest za krótki" : "The number is too short" : undefined;
+
     const dataValid = value => (dataRegex.test(value)) ? undefined : language === "PL" ? "Niepoprawna data" : "Incorrect date";
+
+    const minValue = value => value === "0" ? language === "PL" ? "Niepoprawna wartość" : "Incorrect value" : console.log(typeof value);
 
     let isExpired = (value) => {
         if (value !== undefined) {
             let splitedValue = value.split("/");
             let splitedToday = currentDate.split("/");
             if (splitedValue[1] > splitedToday[1]) {
-                console.log(splitedValue[1], splitedToday[1] + "now")
                 return undefined
             } else if (splitedValue[1] === splitedToday[1]) {
                 if (splitedValue[0] > splitedToday[0]) {
@@ -217,7 +220,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                                 name="CVV"
                                 placeholder="XXX"
                                 parse={formatString("XXX")}
-                                validate={composeValidators(cvv, mustBeNumber, required)}>
+                                validate={composeValidators(cvv, character3Lenght, mustBeNumber, required)}>
                                 {({ input, meta }) => (
                                     <div className={styles.form_short}>
                                         <label
@@ -283,15 +286,20 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             </div>
                             <Field
                                 name="numberOfLicenses"
-                                validate={composeValidators(numberOfLicenses)}>
-                                {({ input }) => (
+                                validate={composeValidators(numberOfLicenses, minValue)}>
+                                {({ input, meta }) => (
                                     <div className={styles.form_short}>
-                                        <label>{language === "PL" ? "Ilość licencji" : "Number of licence"}</label>
+                                        <label
+                                            style={
+                                                !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>{language === "PL" ? "Ilość licencji" : "Number of licence"}</label>
+
                                         <input
                                             {...input}
                                             value={numberOfSubscription}
                                             type="number"
                                             min="1"
+                                            style={
+                                                !meta.touched ? { border: " solid 1px #3b55e6" } : meta.touched && meta.valid ? { border: "1px green solid" } : { border: "solid 1px red" }}
                                         ></input>
                                     </div>
                                 )}

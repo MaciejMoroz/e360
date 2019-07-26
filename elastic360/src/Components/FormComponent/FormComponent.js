@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Field } from 'react-final-form';
 /* eslint-disable */
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styles from "./FormComponent.module.scss";
 
 const FormComponent = ({ history, addOrder, props, language }) => {
@@ -20,9 +19,6 @@ const FormComponent = ({ history, addOrder, props, language }) => {
 
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/)
     const emailRegExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-
-
-
 
     const required = value => (value ? undefined : language === "PL" ? "Pole wymagane" : "Field required");
     const mustBeText = value => (!isNaN(value) ? language === "PL" ? "Musi być tekst" : "Must be a text" : undefined)

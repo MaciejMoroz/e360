@@ -8,7 +8,7 @@ const initCard = {
     isFliped: false
 }
 
-const CreditCardFormContainer = (card = initCard, action) => {
+const CreditCardFormReducer = (card = initCard, action) => {
     switch (action.type) {
         case ACTION_TYPES.ADD_CARDNUMBER:
             return {
@@ -49,4 +49,4 @@ const CreditCardFormContainer = (card = initCard, action) => {
     }
 };
 
-export default CreditCardFormContainer;
+export default CreditCardFormReducer;

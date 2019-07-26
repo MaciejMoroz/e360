@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import styles from "./ProgresBarComponent.module.scss"
 
 
@@ -11,16 +12,27 @@ class ProgresBarComponent extends React.Component {
         history: PropTypes.object.isRequired
     };
     render() {
-        const { match, location, history } = this.props;
+        const { location } = this.props;
+        let disabledLink = "";
 
         const isForm = () => {
             if (location.pathname === "/form" || location.pathname === "/payment") {
+                disabledLink = "/form"
                 return styles.active
+            } else {
+
+                return styles.inactive
             }
         }
         const isCardForm = () => {
+
             if (location.pathname === "/payment") {
+                disabledLink = "/form"
                 return styles.active
+            } else {
+                disabledLink = "/form"
+                return styles.inactive
+
             }
         }
 
@@ -30,8 +42,8 @@ class ProgresBarComponent extends React.Component {
                 <div className={styles.progresBox}>
 
                     <ul>
-                        <li className={styles.active}> <span>Chose plan</span></li>
-                        <li className={isForm()}> <span>Personal data</span></li>
+                        <li className={styles.active}> <Link to="/">Chose plan</Link></li>
+                        <li className={isForm()}> <Link to={disabledLink}><span disabled={disabledLink}>Personal data</span></Link></li>
                         <li className={isCardForm()}> <span>Payment</span></li>
                     </ul>
                 </div >
@@ -40,8 +52,6 @@ class ProgresBarComponent extends React.Component {
     }
 }
 
-// Create a new component that is "connected" (to borrow redux
-// terminology) to the router.
 const ProgresBarComponentWithRouter = withRouter(ProgresBarComponent);
 
 export default ProgresBarComponentWithRouter

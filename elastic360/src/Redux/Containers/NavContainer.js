@@ -4,12 +4,14 @@ import Nav from "../../Pages/Nav/Nav"
 
 import { changeLanguage } from "../Actions/LanguageAction"
 
+
 const mapStateToProps = state => ({
     language: state.language
 });
 
 const mapDispatchToProps = {
-    changeLanguage
+    changeLanguage,
+
 };
 
 const NavContainer = connect(

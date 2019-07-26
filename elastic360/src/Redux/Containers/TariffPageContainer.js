@@ -6,13 +6,17 @@ import { fetchProductsWithRedux } from "../Actions/ProductActions";
 import { fetchCurrencysWithRedux } from "../Actions/CurrencyActions"
 import { changeLanguage } from "../Actions/LanguageAction"
 
+
+
 const mapStateToProps = state => ({
     products: state.products.products,
     isLoading: state.products.isLoading,
     isError: state.products.isError,
     isLoadingCurrency: state.currency.isLoading,
     isErrorCurrency: state.currency.isError,
-    language: state.language
+    language: state.language,
+    animation: state.animation,
+
 });
 
 const mapDispatchToProps = {

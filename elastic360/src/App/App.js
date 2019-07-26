@@ -11,10 +11,13 @@ import FormPage from '../Pages/FormPage/FormPage'
 import PaymentPage from "../Pages/PaymentPage/PaymentPage"
 import ThxPageContainer from "../Redux/Containers/ThxPageContainer"
 
+
+
 function App() {
 
   return (
     <Provider store={store}>
+
       <Component>
         <Wrapper>
           <Router>
@@ -26,6 +29,7 @@ function App() {
           </Router>
         </Wrapper>
       </Component>
+
     </Provider >
   );
 }

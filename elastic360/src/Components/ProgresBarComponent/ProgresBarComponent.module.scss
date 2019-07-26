@@ -2,7 +2,6 @@
 
 .progresBox {
   width: 100%;
-  position: absolute;
   top: $space * 3;
   @media (max-width: 445px) {
     font-size: 12px;
@@ -81,9 +80,7 @@
         background-position: 100%;
       }
       &.inactive::before {
-        // transition-delay: 1s;
         transition: 1s cubic-bezier(0.44, 0.85, 0.92, 0.15) 0.3s;
-
         background-position: 100%;
       }
     }

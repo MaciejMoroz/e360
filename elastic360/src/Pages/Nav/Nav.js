@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./Nav.module.scss"
-import Component from "../../GlobalStyles/component/Component"
 import { withRouter } from 'react-router-dom';
+import Component from "../../GlobalStyles/component/Component"
 
 import ProgresBarComponentWithRouter from "../../Components/ProgresBarComponent/ProgresBarComponent"
 

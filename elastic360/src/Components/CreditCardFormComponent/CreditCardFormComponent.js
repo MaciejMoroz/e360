@@ -18,6 +18,11 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
     const prodcutPrice = order.product.price
     const price = (prodcutPrice * YrSubscription * numberOfSubscription * isPLN).toFixed(2);
     const priceToString = ((price)).toString().split(".");
+    console.log("product", product)
+    console.log("prodcutPrice", prodcutPrice)
+    console.log("price", price)
+    console.log("priceToString", priceToString)
+
 
 
 

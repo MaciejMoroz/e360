@@ -5,7 +5,7 @@ import { addOrder } from "../Actions/orderAction";
 
 const mapStateToProps = state => ({
     language: state.language,
-    product: state.order.product
+    product: state.order.order.product
 });
 
 const mapDispatchToProps = {

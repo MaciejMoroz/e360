@@ -7,8 +7,8 @@ import { regExpLiteral } from '@babel/types';
 const FormComponent = ({ product, history, addOrder, props, language }) => {
     const [disabled, setDisabled] = useState(false);
     const [formData, setformData] = useState()
-
-    const onSubmit = async (values, product) => {
+    // console.log(product)
+    const onSubmit = async (values) => {
         let firstName = values.firstName,
             lastName = values.lastName,
             email = values.email,

@@ -89,3 +89,31 @@
     }
   }
 }
+
+.goBackBtn {
+  width: 100%;
+  position: absolute;
+  top: $space * 2;
+  display: flex;
+  justify-content: center;
+
+  // transform: translateX(-50%);
+  .btn {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 30px;
+    border-radius: 25px;
+    background: $color-6;
+    color: $color-1;
+    font-size: $fontsize-label;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-7;
+      transition: 300ms ease all;
+    }
+  }
+}

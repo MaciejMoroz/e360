@@ -11,17 +11,13 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
 
 
     const [YrSubscription, setYrSubscription] = useState(12);
-    const [numberOfSubscription, setnumberOfSubscription] = useState(1);
+    const [numberOfSubscription, setnumberOfSubscription] = useState();
     const [disabled, setDisabled] = useState(false);
 
     const product = order.product;
     const prodcutPrice = order.product.price
     const price = (prodcutPrice * YrSubscription * numberOfSubscription * isPLN).toFixed(2);
     const priceToString = ((price)).toString().split(".");
-    console.log("product", product)
-    console.log("prodcutPrice", prodcutPrice)
-    console.log("price", price)
-    console.log("priceToString", priceToString)
 
 
 
@@ -38,17 +34,18 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
             userTel = order.user.tel,
             itWasPaid = true,
             toPay = price,
-            timeOFSub = YrSubscription,
+            timeOfSub = YrSubscription,
             quantOfsubscriptions = numberOfSubscription
 
-        await postOrder(productId, userFirstName, userLastName, userEmail, userTel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions)
-        await addOrder(product, userFirstName, userLastName, userEmail, userTel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions)
+        await postOrder(productId, userFirstName, userLastName, userEmail, userTel, itWasPaid, toPay, timeOfSub, quantOfsubscriptions)
+        await addOrder(product, userFirstName, userLastName, userEmail, userTel, itWasPaid, toPay, timeOfSub, quantOfsubscriptions)
 
         history.push('/thx');
 
     };
 
     //validation
+    const positiveNumbersRegExp = new RegExp(/^[1-9]\d*$/)
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/);
     const nameRegExp = new RegExp(/^[a-zA-Z-ąśłŁćźżĄŚŹĆŻÓóZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/);
     const dataRegex = new RegExp(/(?:0[1-9]|1[0-2])\/[0-9]{2}/);
@@ -75,11 +72,13 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
 
     const character16Lenght = value => value.split("-").join("").length !== 16 ? language === "PL" ? "Numer karty jest za krótki" : "The card number is too short" : undefined;
 
-    const character3Lenght = value => value === undefined ? 111 : value.length !== 3 ? language === "PL" ? "Numer jest za krótki" : "The number is too short" : undefined;
+    const character3Lenght = value => value === undefined ? "" : value.length !== 3 ? language === "PL" ? "Numer jest za krótki" : "The number is too short" : undefined;
 
     const dataValid = value => (dataRegex.test(value)) ? undefined : language === "PL" ? "Niepoprawna data" : "Incorrect date";
 
-    const minValue = value => value === "0" ? language === "PL" ? "Niepoprawna wartość" : "Incorrect value" : console.log(typeof value);
+    const minValue = value => value === "0" ? language === "PL" ? "Niepoprawna wartość" : "Incorrect value" : undefined
+
+    const positiveNumbers = value => positiveNumbersRegExp.test(value) ? undefined : language === "PL" ? "Niepoprawna wartość" : "Incorrect value"
 
     let isExpired = (value) => {
         if (value !== undefined) {
@@ -130,7 +129,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
     }
 
     const numberOfLicenses = (value) => {
-        setnumberOfSubscription(value ? value : 1)
+        setnumberOfSubscription(value ? value : "")
     }
 
     return (
@@ -245,15 +244,13 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                                             type="number"
                                             style={
                                                 !meta.touched ? { border: " solid 1px #3b55e6" } : meta.touched && meta.valid ? { border: "1px green solid" } : { border: "solid 1px red" }} />
-                                        {/* {console.log(meta)} */}
-                                        {/* onBlur psuje validacje,konsolapokazuje prawidłowe dane, nie sąwyswietlane */}
                                         {meta.error && meta.touched && <p className={styles.error}>{meta.error}</p>}
-                                        {meta.error ? setDisabled(true) : setDisabled(false)}
+
                                     </div>
                                 )}
                             </Field>
                         </div>
-                        <h4>{language === "PL" ? "Wybrany produkt" : "Product plan: "}{product.name}</h4>
+                        <h4>{language === "PL" ? "Wybrany produkt " : "Product plan: "}{product.name}</h4>
                         <div className={styles.short_box}>
                             <div className={styles.radio_box}>
                                 <Field
@@ -294,21 +291,22 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             </div>
                             <Field
                                 name="numberOfLicenses"
-                                validate={composeValidators(numberOfLicenses, minValue)}>
+                                validate={composeValidators(numberOfLicenses, positiveNumbers, minValue)}>
                                 {({ input, meta }) => (
                                     <div className={styles.form_short}>
                                         <label
                                             style={
-                                                !meta.touched ? { color: "#c5c7c9" } : meta.touched && meta.valid ? { color: "green" } : { color: "red" }}>{language === "PL" ? "Ilość licencji" : "Number of licence"}</label>
+                                                !meta.touched ? { color: "#c5c7c9" } : meta.valid ? { color: "green" } : { color: "red" }}>{language === "PL" ? "Ilość licencji" : "Number of licence"}</label>
 
                                         <input
                                             {...input}
                                             value={numberOfSubscription}
                                             type="number"
-                                            min="1"
+
                                             style={
-                                                !meta.touched ? { border: " solid 1px #3b55e6" } : meta.touched && meta.valid ? { border: "1px green solid" } : { border: "solid 1px red" }}
-                                        ></input>
+                                                !meta.touched ? { border: " solid 1px #3b55e6" } : meta.valid ? { border: "1px green solid" } : { border: "solid 1px red" }} />
+                                        {meta.error && meta.touched && <p className={styles.error}>{meta.error}</p>}
+                                        {meta.error ? setDisabled(true) : setDisabled(false)}
                                     </div>
                                 )}
                             </Field>
@@ -322,7 +320,7 @@ const CreditCardFormComponent = ({ history, addCardNumber, addCardName, addCardL
                             <span className={styles.change}>{priceToString[1]}</span>
 
                             <span className={styles.currencySymbol}>
-                                {language === "PL" ? " zł" : <span>&#8364;</span>}
+                                {language === "PL" ? " zł" : <span> &#8364;</span>}
 
                             </span>
                         </h4>

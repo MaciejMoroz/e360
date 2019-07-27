@@ -24,7 +24,7 @@ const Order = mongoose.model("order", {
   pay: {
     itWasPaid: Boolean,
     toPay: Number,
-    timeOFSub: Number,
+    timeOfSub: String,
     quantOfsubscriptions: Number
   },
 })

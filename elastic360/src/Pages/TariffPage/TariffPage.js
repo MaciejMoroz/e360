@@ -10,8 +10,6 @@ const TariffPage = ({ products, isLoading, isError, fetchProductsWithRedux, chan
         changeLanguage("EN");
         fetchCurrencysWithRedux();
         fetchProductsWithRedux();
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -22,7 +20,7 @@ const TariffPage = ({ products, isLoading, isError, fetchProductsWithRedux, chan
     if (isLoadingCurrency || isLoading) {
         return <div className={style.center}><img src={LoadingGif} alt="loading..." /></div>;
     }
-    // when={}
+
     return (
         <Fade left>
             <ProductListContainer products={products}></ProductListContainer>

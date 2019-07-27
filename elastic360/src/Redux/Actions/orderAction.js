@@ -6,13 +6,13 @@ export const ACTION_TYPES = {
 
 };
 
-export const addOrder = (product, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions) => ({
+export const addOrder = (product, firstName, lastName, email, tel, itWasPaid, toPay, timeOfSub, quantOfsubscriptions) => ({
     type: ACTION_TYPES.ADD_ORDER,
     order: {
         pay: {
             itWasPaid: itWasPaid,
             toPay: toPay,
-            timeOFSub: timeOFSub,
+            timeOfSub: timeOfSub,
             quantOfsubscriptions: quantOfsubscriptions
 
         },
@@ -27,11 +27,10 @@ export const addOrder = (product, firstName, lastName, email, tel, itWasPaid, to
 });
 
 
-export const postOrder = (productId, firstName, lastName, email, tel, itWasPaid, toPay, timeOFSub, quantOfsubscriptions) => {
+export const postOrder = (productId, firstName, lastName, email, tel, itWasPaid, toPay, timeOfSub, quantOfsubscriptions) => {
     const URL = "http://localhost:4001";
     return () => {
-
-        return axios.post(`${URL}/order/${productId}/${firstName}/${lastName}/${encodeURIComponent(email)}/${tel}/${itWasPaid}/${toPay}/${timeOFSub}/${quantOfsubscriptions}`)
+                return axios.post(`${URL}/order/${productId}/${firstName}/${lastName}/${encodeURIComponent(email)}/${tel}/${itWasPaid}/${toPay}/${timeOfSub}/${quantOfsubscriptions}`)
             .then(response => {
                 postOrderSuccess(response);
             })

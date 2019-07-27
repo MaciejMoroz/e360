@@ -54,6 +54,7 @@
   input[type="text"],
   input[type="number"],
   input[type="email"] {
+    margin-top: $space * 2;
     margin-bottom: $base-unit;
     border: 1px solid $color-6;
     border-radius: 25px;
@@ -73,6 +74,10 @@
     }
   }
   label {
+    @media (max-width: 440px) {
+      height: 44px;
+    }
+
     display: block;
     // margin-left: 30px;
     font-size: 14px;

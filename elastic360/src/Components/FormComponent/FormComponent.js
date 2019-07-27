@@ -7,7 +7,6 @@ import { regExpLiteral } from '@babel/types';
 const FormComponent = ({ product, history, addOrder, props, language }) => {
     const [disabled, setDisabled] = useState(false);
     const [formData, setformData] = useState()
-    // console.log(product)
     const onSubmit = async (values) => {
         let firstName = values.firstName,
             lastName = values.lastName,
@@ -20,13 +19,15 @@ const FormComponent = ({ product, history, addOrder, props, language }) => {
     const isFirstLetterIsCapital = new RegExp(/^[A-Z]/)
     const nameRegExp = new RegExp(/^[a-zA-Z-ąśłŁćźżĄŚŹĆŻÓóZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/);
     const emailRegExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    const telRegExp = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
 
     const required = value => (value ? undefined : language === "PL" ? "Pole wymagane" : "Field required");
     const mustBeText = value => (!isNaN(value) ? language === "PL" ? "Musi być tekst" : "Must be a text" : undefined)
     const mustBeFirstLetterCapital = value =>
         (isFirstLetterIsCapital.test(value[0])) ? undefined : language === "PL" ? "Musi zacznać się z dużej litery" : "The first letter must be a capital";
     const mustBeNumber = value => (isNaN(value) ? language === "PL" ? "Musi być liczbą" : "Must be a number" : undefined);
-    const minLenght = value => value.length < 5 ? language === "PL" ? "Minimum 6 liczb" : "atleast 6 numbers" : undefined;
+    const minLenght = value => value.length < 9 ? language === "PL" ? "Minimum 9 liczb" : "Minimum 9 numbers" : undefined;
+    const telNumber = value => telRegExp.test(value) ? undefined : language === "PL" ? "Niepoprawny format" : "Incorrect format";
 
     const firsLastNeme = value => nameRegExp.test(value) ? undefined : language === "PL" ? "Niepoprawne znaki" : "incorrect characters";
 
@@ -89,7 +90,7 @@ const FormComponent = ({ product, history, addOrder, props, language }) => {
                         )}
                     </Field>
                     <Field name="telephoneNumber"
-                        validate={composeValidators(required, mustBeNumber, minLenght)}>
+                        validate={composeValidators(required, telNumber, minLenght)}>
                         {({ input, meta }) => (
                             <div className={styles.form}>
                                 <label

@@ -30,6 +30,7 @@ router.get("/products/:productId?", async (req, res) => {
 
 router.post("/order/:productId/:firstName/:lastName/:email/:telNumber/:itWasPaid/:toPay/:timeOfSub/:quantOfsubscriptions", async (req, res) => {
   let { productId, firstName, lastName, email, telNumber, itWasPaid, toPay, timeOfSub, quantOfsubscriptions } = req.params;
+  console.log(timeOfSub)
   const order = new Order({
     productId: productId,
     user: {
@@ -46,7 +47,7 @@ router.post("/order/:productId/:firstName/:lastName/:email/:telNumber/:itWasPaid
     },
   });
   await order.save();
-  res.send("dodano")
+  res.send(order)
 
 })
 

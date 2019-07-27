@@ -73,6 +73,12 @@
         background-color: $color-10;
         background-position: 0;
       }
+      &.inactive {
+        cursor: not-allowed;
+        span {
+          cursor: not-allowed;
+        }
+      }
       &.inactive::after {
         transition: 1s;
         background-color: $color-1;

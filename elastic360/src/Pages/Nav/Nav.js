@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./Nav.module.scss"
 import { withRouter } from 'react-router-dom';
+
 import Component from "../../GlobalStyles/component/Component"
 
 import ProgresBarComponentWithRouter from "../../Components/ProgresBarComponent/ProgresBarComponent"
@@ -11,8 +12,8 @@ const Nav = ({ changeLanguage, language }) => {
     }
 
     return (
-        <>
-            <Component>
+        <Component>
+            <div className={styles.customWrapper}>
                 <div className={styles.navBox}></div>
                 <ProgresBarComponentWithRouter language={language}></ProgresBarComponentWithRouter>
                 <div className={styles.lng}>
@@ -28,9 +29,11 @@ const Nav = ({ changeLanguage, language }) => {
                         style={language === "PL" ? { fontWeight: '800' } : { fontWeight: "500" }}
                     >PL
             </button>
+
                 </div >
-            </Component>
-        </>
+
+            </div>
+        </Component>
     );
 }
 

@@ -17,15 +17,13 @@ class ProgresBarComponent extends React.Component {
     render() {
         const { location, language } = this.props;
         let disabledLink = "";
-        let hideProgresBar = "Show"
-        console.log(hideProgresBar);
+
 
         const isForm = () => {
             if (location.pathname === "/form" || location.pathname === "/payment") {
                 disabledLink = "/form"
                 return styles.active
             } else if (location.pathname === "/thx") {
-                hideProgresBar = "Hide"
                 return styles.active
             } else {
                 return styles.inactive
@@ -37,7 +35,6 @@ class ProgresBarComponent extends React.Component {
                 disabledLink = "/form"
                 return styles.active
             } else if (location.pathname === "/thx") {
-                hideProgresBar = "Hide"
                 return styles.active
             } else {
                 disabledLink = "/form"
@@ -50,13 +47,11 @@ class ProgresBarComponent extends React.Component {
             <>
                 <Fade bottom opposite when={location.pathname !== "/thx" ? true : false}>
                     <div className={styles.progresBox}>
-
                         <ul>
                             <li className={styles.active}>
                                 <Link to="/">{
                                     language === "PL" ? "Wybierz plan" : "Chose a plan"}</Link>
                             </li>
-
                             <li className={isForm()}>
                                 <Link to={disabledLink}>
                                     <span disabled={disabledLink}>
